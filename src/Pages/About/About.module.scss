@@ -1,0 +1,133 @@
+.aboutSection {
+  display: flex;
+  margin: 200px 0px 0px 200px;
+  h1 {
+    color: #8cda3f;
+    line-height: 1.1em;
+    font-size: 40px;
+    padding: 25px 10px 10px 10px;
+    margin: 0;
+    text-align: center;
+    border: 2px solid #8cda3f;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-family: 'Oswald', sans-serif;
+    display: inline;
+    height: 70px;
+  }
+  .paragraphs {
+    width: 70%;
+    margin-left: 50px;
+    .paraOne,
+    .paraTwo,
+    .paraThree {
+      line-height: 1.9em;
+      color: #ffffff;
+      letter-spacing: normal;
+      margin: 0;
+    }
+    .paraTwo,
+    .paraThree {
+      margin: 30px 0px 0px 0px;
+    }
+  }
+}
+
+.innovatorSection {
+  padding: 50px 30px 30px 30px;
+  border: 2px solid #8cda3f;
+  width: 400px;
+  margin: 200px 0px 0px 300px;
+  padding-right: 50px;
+  h1 {
+    color: #8cda3f;
+    line-height: 1.1em;
+    font-size: 30px;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-family: 'Oswald', sans-serif;
+    margin: 0px 0px 50px 0px;
+  }
+  .innovatorParaOne,
+  .innovatorParaTwo {
+    line-height: 1.9em;
+    color: #ffffff;
+    letter-spacing: normal;
+    margin: 0;
+  }
+  .innovatorParaTwo {
+    margin-top: 40px;
+  }
+  img {
+    position: absolute;
+    top: 870px;
+    right: 195px;
+    width: 543px;
+    height: 750px;
+  }
+}
+.testimonialSection {
+  h1 {
+    color: #8cda3f;
+    line-height: 1.1em;
+    font-size: 40px;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-family: 'Oswald', sans-serif;
+    margin: 300px 0px 0px 0px;
+  }
+  .testimonialContainer {
+    width: 800px;
+    margin: 50px auto 100px auto;
+    padding: 100px;
+    border: 2px solid #8cda3f;
+    .testimonialOne,
+    .testimonialTwo,
+    .testimonialThree {
+      display: flex;
+
+      .info {
+        h5 {
+          text-transform: capitalize;
+          color: #ffffff;
+          margin-bottom: 15px;
+        }
+        h6 {
+          text-transform: capitalize;
+          color: #8cda3f;
+        }
+      }
+      p {
+        font-size: 22px;
+        color: #ffffff;
+        margin-left: 200px;
+      }
+    }
+    .choices {
+      display: flex;
+      margin: 140px 0px 0px 350px;
+      .first,
+      .second,
+      .third {
+        background-color: #8cda3f;
+        height: 10px;
+        width: 10px;
+        border: 1px solid #8cda3f;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      .second {
+        margin: 0px 10px;
+      }
+    }
+  }
+}
+.active {
+  display: block;
+  left: 0;
+}
+.hidden {
+  position: absolute;
+  left: 3000px;
+}

@@ -1,0 +1,11 @@
+{
+  "eslint.alwaysShowStatus": true,
+  "eslint.codeAction.showDocumentation": {
+
+    "enable": true
+  },
+  "eslint.format.enable": true,
+  "stylelint.autoFixOnSave": true,
+  "eslint.nodeEnv": "",
+  "prettier.singleQuote": true
+}
