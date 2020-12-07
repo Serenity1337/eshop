@@ -90,5 +90,25 @@
       "type": "Pre Workout",
       "picture": "preworkout.webp"
     }
+  ],
+  "users": [
+    {
+      "firstName": "Karolis",
+      "lastName": "Šulcas",
+      "email": "asd@gmail.com",
+      "phoneNumber": "+37064646477",
+      "password": "asd",
+      "cart": [],
+      "id": 1
+    },
+    {
+      "firstName": "Karolis",
+      "lastName": "Šulcas",
+      "email": "skarolis9999@gmail.com",
+      "phoneNumber": "+37064646477",
+      "password": "asd",
+      "cart": [],
+      "id": 2
+    }
   ]
 }
