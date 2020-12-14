@@ -42,10 +42,8 @@ export const Login = () => {
       if (profile.password === userProfile.password) {
         let userProfileCopy = { ...userProfile }
         delete userProfileCopy.password
-        localStorage.setItem('user', JSON.stringify(userProfileCopy))
+        localStorage.setItem('user', JSON.stringify({ id: userProfileCopy.id }))
         setsuccess(true)
-        console.log(userProfileCopy)
-        console.log(users)
       } else {
         let error = 'Please make sure your email or password is correct'
 
@@ -56,12 +54,10 @@ export const Login = () => {
       setprofileErrorState(error)
     }
   }
-  console.log(profileErrorState)
   return (
     <div className={classes.registerContainer}>
       <div>
         <h1>Enter your credentials to log in</h1>
-
         <div className={classes.pairing}>
           <input
             type='email'
@@ -82,8 +78,6 @@ export const Login = () => {
         ) : null}
         <button onClick={registerFormHandler}> Log in Now </button>
       </div>
-      <div></div>
-      <div>ksejksentskenkj</div>
       {success ? <Redirect to='/' /> : null}
     </div>
   )

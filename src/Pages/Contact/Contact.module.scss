@@ -1,0 +1,95 @@
+.contactContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  z-index: 10;
+  .container {
+    width: 35%;
+  }
+  .contactTitle {
+    border: 1px solid #8cda3f;
+    padding: 40px;
+    text-transform: uppercase;
+    color: #8cda3f;
+    margin-bottom: 100px;
+    margin-right: 20px;
+  }
+  .messageInput {
+    background: none;
+    border: 0;
+    border-bottom: 1px solid #8cda3f;
+    color: #8cda3f;
+    padding: 10px 0px;
+    margin: 15px auto 0px auto;
+    width: 95%;
+    margin-left: 12px;
+  }
+  .messageInput:focus {
+    outline: 0;
+  }
+  .messageInput::placeholder {
+    color: #8cda3f;
+  }
+  .messageInput:-webkit-autofill {
+    -webkit-text-fill-color: #ffffff !important;
+    background-color: none;
+    -webkit-box-shadow: 0 0 0px 1000px #0c172b inset;
+  }
+  h1 {
+    font-size: 36px;
+    color: #ffffff;
+  }
+  .contactPara {
+    color: #ffffff;
+    line-height: 1.5em;
+    margin-left: 11px;
+  }
+  .pairing {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 15px;
+    input {
+      background: none;
+      border: 0;
+      border-bottom: 1px solid #8cda3f;
+      color: #8cda3f;
+      padding: 10px 0px;
+      margin: 0px auto;
+      width: 45%;
+    }
+    input:focus {
+      outline: 0;
+    }
+    input::placeholder {
+      color: #8cda3f;
+    }
+    input:-webkit-autofill {
+      -webkit-text-fill-color: #ffffff !important;
+      background-color: none;
+      -webkit-box-shadow: 0 0 0px 1000px #0c172b inset;
+    }
+  }
+
+  button {
+    background: none;
+    border: 1px solid #8cda3f;
+    border-radius: 50px;
+    color: #8cda3f;
+    cursor: pointer;
+    padding: 10px;
+    margin: 20px auto 0px auto;
+    display: block;
+    width: 150px;
+  }
+  button:hover {
+    background-color: #8cda3f;
+    color: #111111;
+  }
+}
+.error {
+  color: red;
+  text-align: center;
+  margin-top: 25px;
+}

@@ -98,7 +98,68 @@
       "email": "asd@gmail.com",
       "phoneNumber": "+37064646477",
       "password": "asd",
-      "cart": [],
+      "cart": [
+        {
+          "title": "BCAA Capsules",
+          "price": "15,00 €",
+          "type": "Capsules",
+          "picture": "capsules60.webp"
+        },
+        {
+          "title": "BCAA Capsules 200",
+          "price": "30,00 €",
+          "type": "Capsules",
+          "picture": "capsules200.webp"
+        },
+        {
+          "title": "BCAA Capsules Package Deal",
+          "price": "45,00 €",
+          "type": "Capsules",
+          "picture": "capsulespackage.webp"
+        },
+        {
+          "title": "Protein Powder Vanilla",
+          "price": "50,00 €",
+          "type": "Protein Powder",
+          "picture": "proteinpowder.webp"
+        },
+        {
+          "title": "Protein Powder Cookies & Cream",
+          "price": "50,00 €",
+          "type": "Protein Powder",
+          "picture": "proteinpowder.webp"
+        },
+        {
+          "title": "BCAA Capsules",
+          "price": "15,00 €",
+          "type": "Capsules",
+          "picture": "capsules60.webp"
+        },
+        {
+          "title": "BCAA Capsules",
+          "price": "15,00 €",
+          "type": "Capsules",
+          "picture": "capsules60.webp"
+        },
+        {
+          "title": "BCAA Capsules",
+          "price": "15,00 €",
+          "type": "Capsules",
+          "picture": "capsules60.webp"
+        },
+        {
+          "title": "BCAA Capsules",
+          "price": "15,00 €",
+          "type": "Capsules",
+          "picture": "capsules60.webp"
+        },
+        {
+          "title": "BCAA Capsules",
+          "price": "15,00 €",
+          "type": "Capsules",
+          "picture": "capsules60.webp"
+        }
+      ],
       "id": 1
     },
     {
