@@ -4,91 +4,106 @@
       "title": "BCAA Capsules",
       "price": "15,00 €",
       "type": "Capsules",
-      "picture": "capsules60.webp"
+      "picture": "capsules60.webp",
+      "quantity": 1
     },
     {
       "title": "BCAA Capsules 200",
       "price": "30,00 €",
       "type": "Capsules",
-      "picture": "capsules200.webp"
+      "picture": "capsules200.webp",
+      "quantity": 1
     },
     {
       "title": "BCAA Capsules Package Deal",
       "price": "45,00 €",
       "type": "Capsules",
-      "picture": "capsulespackage.webp"
+      "picture": "capsulespackage.webp",
+      "quantity": 1
     },
     {
       "title": "Protein Powder Vanilla",
       "price": "50,00 €",
       "type": "Protein Powder",
-      "picture": "proteinpowder.webp"
+      "picture": "proteinpowder.webp",
+      "quantity": 1
     },
     {
       "title": "Protein Powder Cookies & Cream",
       "price": "50,00 €",
       "type": "Protein Powder",
-      "picture": "proteinpowder.webp"
+      "picture": "proteinpowder.webp",
+      "quantity": 1
     },
     {
       "title": "Protein Powder Strawberry",
       "price": "50,00 €",
       "type": "Protein Powder",
-      "picture": "proteinpowder.webp"
+      "picture": "proteinpowder.webp",
+      "quantity": 1
     },
     {
       "title": "Protein Powder Chocolate",
       "price": "50,00 €",
       "type": "Protein Powder",
-      "picture": "proteinpowder.webp"
+      "picture": "proteinpowder.webp",
+      "quantity": 1
     },
     {
       "title": "Protein Powder Peanut Butter",
       "price": "50,00 €",
       "type": "Protein Powder",
-      "picture": "proteinpowder.webp"
+      "picture": "proteinpowder.webp",
+      "quantity": 1
     },
     {
       "title": "Protein Powder Cappuccino",
       "price": "50,00 €",
       "type": "Protein Powder",
-      "picture": "proteinpowder.webp"
+      "picture": "proteinpowder.webp",
+      "quantity": 1
     },
     {
       "title": "Pre Workout Raspberry",
       "price": "25,00 €",
       "type": "Pre Workout",
-      "picture": "preworkout.webp"
+      "picture": "preworkout.webp",
+      "quantity": 1
     },
     {
       "title": "Pre Workout Fruit Punch",
       "price": "25,00 €",
       "type": "Pre Workout",
-      "picture": "preworkout.webp"
+      "picture": "preworkout.webp",
+      "quantity": 1
     },
     {
       "title": "Pre Workout Watermelon",
       "price": "25,00 €",
       "type": "Pre Workout",
-      "picture": "preworkout.webp"
+      "picture": "preworkout.webp",
+      "quantity": 1
     },
     {
       "title": "Pre Workout Cherry",
       "price": "25,00 €",
       "type": "Pre Workout",
-      "picture": "preworkout.webp"
+      "picture": "preworkout.webp",
+      "quantity": 1
     },
     {
       "title": "Pre Workout Green Apple",
       "price": "25,00 €",
       "type": "Pre Workout",
-      "picture": "preworkout.webp"
+      "picture": "preworkout.webp",
+      "quantity": 1
     },
     {
       "title": "Pre Workout Lemonade",
       "price": "25,00 €",
       "type": "Pre Workout",
-      "picture": "preworkout.webp"
+      "picture": "preworkout.webp",
+      "quantity": 1
     }
   ],
   "users": [
@@ -103,61 +118,50 @@
           "title": "BCAA Capsules",
           "price": "15,00 €",
           "type": "Capsules",
-          "picture": "capsules60.webp"
+          "picture": "capsules60.webp",
+          "quantity": 1
         },
         {
           "title": "BCAA Capsules 200",
           "price": "30,00 €",
           "type": "Capsules",
-          "picture": "capsules200.webp"
+          "picture": "capsules200.webp",
+          "quantity": 1
         },
         {
           "title": "BCAA Capsules Package Deal",
           "price": "45,00 €",
           "type": "Capsules",
-          "picture": "capsulespackage.webp"
+          "picture": "capsulespackage.webp",
+          "quantity": 1
         },
         {
-          "title": "Protein Powder Vanilla",
-          "price": "50,00 €",
-          "type": "Protein Powder",
-          "picture": "proteinpowder.webp"
+          "title": "Pre Workout Green Apple",
+          "price": "25,00 €",
+          "type": "Pre Workout",
+          "picture": "preworkout.webp",
+          "quantity": 1
+        },
+        {
+          "title": "Pre Workout Lemonade",
+          "price": "25,00 €",
+          "type": "Pre Workout",
+          "picture": "preworkout.webp",
+          "quantity": 1
         },
         {
           "title": "Protein Powder Cookies & Cream",
           "price": "50,00 €",
           "type": "Protein Powder",
-          "picture": "proteinpowder.webp"
+          "picture": "proteinpowder.webp",
+          "quantity": 1
         },
         {
-          "title": "BCAA Capsules",
-          "price": "15,00 €",
-          "type": "Capsules",
-          "picture": "capsules60.webp"
-        },
-        {
-          "title": "BCAA Capsules",
-          "price": "15,00 €",
-          "type": "Capsules",
-          "picture": "capsules60.webp"
-        },
-        {
-          "title": "BCAA Capsules",
-          "price": "15,00 €",
-          "type": "Capsules",
-          "picture": "capsules60.webp"
-        },
-        {
-          "title": "BCAA Capsules",
-          "price": "15,00 €",
-          "type": "Capsules",
-          "picture": "capsules60.webp"
-        },
-        {
-          "title": "BCAA Capsules",
-          "price": "15,00 €",
-          "type": "Capsules",
-          "picture": "capsules60.webp"
+          "title": "Protein Powder Strawberry",
+          "price": "50,00 €",
+          "type": "Protein Powder",
+          "picture": "proteinpowder.webp",
+          "quantity": 1
         }
       ],
       "id": 1

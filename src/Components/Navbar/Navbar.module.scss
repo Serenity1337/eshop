@@ -37,7 +37,7 @@
       position: absolute;
       right: 0px;
       height: 100vh;
-      width: 350px;
+      width: 400px;
       opacity: 100%;
 
       .cartTitle {
@@ -65,19 +65,71 @@
         text-align: center;
         padding-top: 20px;
         ul {
-          color: green;
-          li {
-            font-size: 16px;
+          padding: 30px;
+          height: 40%;
+          overflow-y: scroll;
+          .itemCard {
+            display: flex;
+            margin-top: 10px;
+            .productPic {
+              height: 80px;
+              width: 80px;
+            }
+            .infoContainer {
+              .itemTitle {
+                font-size: 16px;
+                font-weight: lighter;
+                line-height: 1.5em;
+                margin: 0;
+                word-break: break-word;
+                text-align: left;
+              }
+              .itemPrice {
+                font-weight: 600;
+                margin: 10px 0px;
+                font-size: 20px;
+                text-align: left;
+              }
+              .quantity {
+                font-size: 22px;
+                text-align: left;
+                display: flex;
+
+                span {
+                  padding: 0px 5px;
+                  cursor: pointer;
+                }
+              }
+            }
           }
+        }
+        .subTotal {
+          margin-top: 50px;
+        }
+        .totalCost {
+          margin-bottom: 70px;
+          border-bottom: 1px solid #8cda3f;
+          padding-bottom: 30px;
+        }
+        .linkToCart {
+          border: 2px solid #8cda3f;
+          border-radius: 50px;
+          padding: 25px 100px;
+          text-align: center;
+          transition: background-color 0.5s ease-out;
+        }
+        .linkToCart:hover {
+          background-color: grey;
+          transition: background-color 0.5s ease-in;
         }
       }
     }
   }
   .cart2 {
-    position: fixed;
+    position: absolute;
     right: -2000px;
     height: 100vh;
-    width: 350px;
+    width: 400px;
     opacity: 100%;
 
     .cartTitle {
@@ -104,6 +156,64 @@
       font-size: 28px;
       text-align: center;
       padding-top: 20px;
+      ul {
+        padding: 30px;
+        height: 40%;
+        overflow-y: scroll;
+        .itemCard {
+          display: flex;
+          margin-top: 10px;
+          .productPic {
+            height: 80px;
+            width: 80px;
+          }
+          .infoContainer {
+            .itemTitle {
+              font-size: 16px;
+              font-weight: lighter;
+              line-height: 1.5em;
+              margin: 0;
+              word-break: break-word;
+              text-align: left;
+            }
+            .itemPrice {
+              font-weight: 600;
+              margin: 10px 0px;
+              font-size: 20px;
+              text-align: left;
+            }
+            .quantity {
+              font-size: 22px;
+              text-align: left;
+              display: flex;
+
+              span {
+                padding: 0px 5px;
+                cursor: pointer;
+              }
+            }
+          }
+        }
+      }
+      .subTotal {
+        margin-top: 50px;
+      }
+      .totalCost {
+        margin-bottom: 70px;
+        border-bottom: 1px solid #8cda3f;
+        padding-bottom: 30px;
+      }
+      .linkToCart {
+        border: 2px solid #8cda3f;
+        border-radius: 50px;
+        padding: 25px 100px;
+        text-align: center;
+        transition: background-color 0.5s ease-out;
+      }
+      .linkToCart:hover {
+        background-color: grey;
+        transition: background-color 0.5s ease-in;
+      }
     }
   }
 }

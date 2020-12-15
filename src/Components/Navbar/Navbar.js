@@ -1,47 +1,43 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import classes from './Navbar.module.scss'
 import { Link, useLocation, useHistory } from 'react-router-dom'
+import { UserContext } from '../../UserContext'
 
 export const Navbar = () => {
-  const [user, setuser] = useState({})
-  const [itemQuantity, setitemQuantity] = useState({})
+  const { user, setuser } = useContext(UserContext)
+  const [cartQuantity, setcartQuantity] = useState(0)
   const [modal, setmodal] = useState(false)
   const [removeClassOnLoad, setremoveClassOnLoad] = useState(false)
   const [filteredItems, setfilteredItems] = useState([])
+  const [loggedIn, setloggedIn] = useState(false)
+  const [userChanged, setuserChanged] = useState(0)
+  const [totalCost, settotalCost] = useState(0)
   const parent = React.createRef()
   const location = useLocation()
   // const containerClasses () => {
   //   if (modal ===)
   // }
+
   useEffect(() => {
-    fetch('http://localhost:4000/users', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((header) => {
-        if (!header.ok) {
-          throw Error(header)
-        }
-        return header.json()
+    if (Object.keys(user).length > 0) {
+      setloggedIn(true)
+      let allItems = 0
+      let total = 0
+      user.cart.map((item) => {
+        allItems = allItems + item.quantity
+
+        let priceToNum = Number(item.price.split(' ')[0].replace(',', '.'))
+        total = total + priceToNum * item.quantity
       })
-      .then((response) => {
-        if (localStorage.getItem('user') !== null) {
-          const currentUserId = JSON.parse(localStorage.getItem('user'))
-          console.log()
-          const currentUserObj = response.filter(
-            (user) => user.id !== currentUserId.id
-          )
-          setuser(currentUserObj[0])
-          setfilteredItems(helperDupeFilter(currentUserObj[0].cart))
-        } else {
-          console.log('asd')
-        }
-      })
-      .catch((e) => {
-        console.log(e)
-      })
+
+      setcartQuantity(allItems)
+      settotalCost(total)
+      setloggedIn(true)
+    } else {
+      console.log('asd')
+      setloggedIn(false)
+    }
+    console.log(user)
   }, [user])
   window.addEventListener('click', (event) => {
     event.stopPropagation()
@@ -57,24 +53,66 @@ export const Navbar = () => {
   const modalClose = (event) => {
     setmodal(false)
   }
-  const helperDupeFilter = (arr) => {
-    const obj = {}
-    const newArr = []
-    arr.map((item, index) => {
-      if (!obj[item.title]) {
-        newArr.push(item)
-        obj[item.title] = true
-        // do nothing
-      }
-    })
-    return newArr
-  }
+  const removeItemQuantity = (item, index) => {
+    const userCopy = { ...user }
 
-  useEffect(() => {
-    if (Object.keys(user).length > 0) {
+    if (item.quantity > 1) {
+      item.quantity = item.quantity - 1
+      userCopy.cart[index] = item
+      fetch('http://localhost:4000/users/' + user.id, {
+        method: 'PUT',
+        body: JSON.stringify(userCopy),
+        headers: { 'Content-Type': 'application/json' },
+      })
+        .then((header) => {
+          if (!header.ok) {
+            throw Error(header)
+          }
+          return header.json()
+        })
+        .then((response) => {
+          if (response) {
+            setuser(userCopy)
+            setuserChanged(index)
+          } else {
+            alert('asd')
+          }
+        })
+        .catch((e) => {
+          console.log(e)
+        })
+    } else {
+      console.log('cant')
     }
-    console.log('test')
-  }, [filteredItems])
+  }
+  const addItemQuantity = (item, index) => {
+    const userCopy = { ...user }
+
+    item.quantity = item.quantity + 1
+    userCopy.cart[index] = item
+    fetch('http://localhost:4000/users/' + user.id, {
+      method: 'PUT',
+      body: JSON.stringify(userCopy),
+      headers: { 'Content-Type': 'application/json' },
+    })
+      .then((header) => {
+        if (!header.ok) {
+          throw Error(header)
+        }
+        return header.json()
+      })
+      .then((response) => {
+        if (response) {
+          setuser(userCopy)
+          setuserChanged(index)
+        } else {
+          alert('asd')
+        }
+      })
+      .catch((e) => {
+        console.log(e)
+      })
+  }
   return (
     <div className={classes.navbar}>
       <div className={classes.logo}>
@@ -109,11 +147,23 @@ export const Navbar = () => {
           <li> Contact </li>
         </Link>
 
-        <li onClick={modalOpen}>
-          {' '}
-          {Object.keys(user).length > 0 ? user.cart.length : null}{' '}
-        </li>
-        <li> Logout </li>
+        {loggedIn ? (
+          <>
+            <li onClick={modalOpen}>{cartQuantity}</li>
+            <li> Logout </li>
+          </>
+        ) : (
+          <>
+            <Link to='/login'>
+              {' '}
+              <li>Login </li>
+            </Link>
+            <Link to='/register'>
+              {' '}
+              <li> Register </li>{' '}
+            </Link>
+          </>
+        )}
       </ul>
 
       {/* {modal ? ( */}
@@ -140,35 +190,45 @@ export const Navbar = () => {
             </span>
             <h1> Cart </h1>
           </div>
-          {
+          {Object.keys(user).length > 0 && user.cart.length > 0 ? (
             <div className={classes.cartList}>
-              {filteredItems.length > 0 ? (
-                <ul>
-                  {filteredItems.map((item, index) => (
+              <ul>
+                {Object.keys(user).length > 0 &&
+                  user.cart.map((item, index) => (
                     <li key={index} className={classes.itemCard}>
-                      <div className={classes.productPic}></div>
+                      <img
+                        src={require(`../../imgs/shop/${item.picture}`)}
+                        alt=''
+                        className={classes.productPic}
+                      />
                       <div className={classes.infoContainer}>
-                        <h5>{item.title} </h5>
-                        <h5>{item.price}</h5>
+                        <h5 className={classes.itemTitle}>{item.title} </h5>
+                        <h5 className={classes.itemPrice}>{item.price}</h5>
                         <div className={classes.quantity}>
-                          {
-                            user.cart.filter(
-                              (product, index) => product.title === item.title
-                            ).length
-                          }
+                          <span onClick={() => removeItemQuantity(item, index)}>
+                            -
+                          </span>
+                          <span>{item.quantity} </span>
+
+                          <span onClick={() => addItemQuantity(item, index)}>
+                            +
+                          </span>
                         </div>
                       </div>
                     </li>
                   ))}
-                </ul>
-              ) : (
-                'Cart is empty'
-              )}
+              </ul>
+              <div className={classes.subTotal}>Subtotal</div>
+              <div className={classes.totalCost}>{totalCost} €</div>
+              <Link className={classes.linkToCart}> Checkout </Link>
             </div>
-          }
+          ) : (
+            <div className={classes.cartList}>
+              <h1> Cart is empty </h1>{' '}
+            </div>
+          )}
         </div>
       </div>
-      {/* ) : null} */}
     </div>
   )
 }

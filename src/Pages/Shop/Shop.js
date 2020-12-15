@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import classes from './Shop.module.scss'
+import { UserContext } from '../../UserContext'
 export const Shop = () => {
+  const { user, setuser } = useContext(UserContext)
   const [products, setproducts] = useState([])
   const [filteredProducts, setfilteredProducts] = useState([])
   const [productTypeFilter, setproductTypeFilter] = useState(false)
@@ -11,35 +13,7 @@ export const Shop = () => {
     Capsules: false,
     ProteinPowder: false,
   })
-  const [user, setuser] = useState(null)
-  useEffect(() => {
-    fetch('http://localhost:4000/users', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((header) => {
-        if (!header.ok) {
-          throw Error(header)
-        }
-        return header.json()
-      })
-      .then((response) => {
-        if (localStorage.getItem('user') !== null) {
-          const currentUserId = JSON.parse(localStorage.getItem('user'))
-          const currentUserObj = response.filter(
-            (user) => user.id !== currentUserId.id
-          )
-          setuser(currentUserObj[0])
-        } else {
-          console.log('xda')
-        }
-      })
-      .catch((e) => {
-        console.log(e)
-      })
-  }, [user])
+
   useEffect(() => {
     fetch('http://localhost:4000/products', {
       method: 'GET',
@@ -107,8 +81,15 @@ export const Shop = () => {
     setproductTypeDisplayFilter(productTypeObjCopy)
   }
   const cartHandler = (product, index) => {
-    const userCopy = user
-    userCopy.cart = [...userCopy.cart, product]
+    const userCopy = { ...user }
+
+    const exists = user.cart.filter((item) => item.title === product.title)
+
+    if (exists.length > 0) {
+      userCopy.cart[index].quantity = userCopy.cart[index].quantity + 1
+    } else {
+      userCopy.cart = [...userCopy.cart, product]
+    }
     fetch('http://localhost:4000/users/' + user.id, {
       method: 'PUT',
       body: JSON.stringify(userCopy),
@@ -121,8 +102,8 @@ export const Shop = () => {
         return header.json()
       })
       .then((response) => {
+        setuser(userCopy)
         if (response) {
-          setuser(userCopy)
         } else {
           alert('asd')
         }
@@ -131,10 +112,6 @@ export const Shop = () => {
         console.log(e)
       })
   }
-  // if (user !== null) {
-  //   console.log(user.cart)
-  // }
-
   return (
     <div className={classes.productsContainer}>
       <h1 className={classes.productsTitle}>capacityx products</h1>
@@ -223,6 +200,7 @@ export const Shop = () => {
 
               <button onClick={() => cartHandler(product, index)}>
                 Add to Cart
+                <span>{product.quantity}</span>
               </button>
             </div>
           ))}
