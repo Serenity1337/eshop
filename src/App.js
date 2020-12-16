@@ -9,6 +9,7 @@ import { Login } from './Pages/LoginPage/Login'
 import { Contact } from './Pages/Contact/Contact'
 import { Navbar } from './Components/Navbar/Navbar'
 import { UserContext } from './UserContext'
+import { Footer } from './Components/Footer/Footer'
 function App() {
   const location = useLocation()
   const [user, setuser] = useState({})
@@ -78,6 +79,7 @@ function App() {
             label='contact'
           ></Route>
         </Switch>
+        <Footer />
       </UserContext.Provider>
     </div>
   )
