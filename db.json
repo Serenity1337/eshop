@@ -119,14 +119,14 @@
           "price": "15,00 €",
           "type": "Capsules",
           "picture": "capsules60.webp",
-          "quantity": 1
+          "quantity": 6
         },
         {
           "title": "BCAA Capsules 200",
           "price": "30,00 €",
           "type": "Capsules",
           "picture": "capsules200.webp",
-          "quantity": 1
+          "quantity": 8
         },
         {
           "title": "BCAA Capsules Package Deal",
@@ -154,7 +154,7 @@
           "price": "50,00 €",
           "type": "Protein Powder",
           "picture": "proteinpowder.webp",
-          "quantity": 1
+          "quantity": 4
         },
         {
           "title": "Protein Powder Strawberry",

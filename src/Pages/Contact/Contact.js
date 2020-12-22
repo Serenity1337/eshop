@@ -2,13 +2,18 @@ import React from 'react'
 import { useState } from 'react'
 import classes from './Contact.module.scss'
 export const Contact = () => {
-  const [profile, setprofile] = useState({})
-  const [profileErrorState, setprofileErrorState] = useState('')
+  const [profile, setprofile] = useState({ data: {}, errors: {} })
 
   const accountHandler = (event) => {
-    setprofile({ ...profile, [event.target.name]: event.target.value })
+    const profileCopy = { ...profile }
+    profileCopy.data = {
+      ...profileCopy.data,
+      [event.target.name]: event.target.value,
+    }
+    setprofile(profileCopy)
   }
   const registerFormHandler = () => {}
+  console.log(profile)
   return (
     <div className={classes.contactContainer}>
       <h1 className={classes.contactTitle}>contact us</h1>
@@ -54,8 +59,8 @@ export const Contact = () => {
           className={classes.messageInput}
           placeholder='Type your message here...'
         />
-        {profileErrorState ? (
-          <p className={classes.error}>{profileErrorState}</p>
+        {Object.keys(profile.errors).length > 0 ? (
+          <p className={classes.error}>{profile.errors.firstName}</p>
         ) : null}
         <button onClick={registerFormHandler}> Submit </button>
       </div>

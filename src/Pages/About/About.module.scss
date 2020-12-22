@@ -123,11 +123,78 @@
     }
   }
 }
+
+@media screen and(max-width: 800px) {
+  .aboutSection {
+    margin: 0;
+    display: block;
+    padding: 100px 20px 0px 20px;
+    h1 {
+      font-size: 30px;
+      margin: 30px 0px;
+      display: block;
+      text-align: center;
+      border: 0;
+    }
+    .paragraphs {
+      margin: 0;
+      width: 100%;
+    }
+  }
+  .innovatorSection {
+    margin: 0;
+    width: 100vw;
+    img {
+      display: none;
+    }
+  }
+  .testimonialSection {
+    width: 100vw;
+    h1 {
+      font-size: 30px;
+      margin: 100px 0px 50px 0px;
+    }
+    .testimonialContainer {
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      // text-align: center;
+
+      .testimonialOne,
+      .testimonialTwo,
+      .testimonialThree {
+        display: block;
+        .info {
+          margin-bottom: 50px;
+          h5,
+          h6 {
+            text-align: center;
+          }
+        }
+        // text-align: center;
+        p {
+          margin: 0px 0px 0px 30px;
+        }
+      }
+      .choices {
+        margin: 50px 0px 30px 150px;
+        .first,
+        .second,
+        .third {
+          width: 20px;
+          height: 20px;
+          border-radius: 50%;
+        }
+        .second {
+          margin: 0px 20px;
+        }
+      }
+    }
+  }
+}
 .active {
-  display: block;
-  left: 0;
+  display: block !important;
 }
 .hidden {
-  position: absolute;
-  left: 3000px;
+  display: none !important;
 }

@@ -274,3 +274,27 @@ a {
 .cartContainer2.pageLoad {
   animation: none;
 }
+@media screen and(max-width: 800px) {
+  .navbar {
+    justify-content: space-between;
+    color: #ffffff;
+    position: absolute;
+    display: flex;
+    top: 30px;
+    width: 100%;
+    .logo {
+      margin: 0px 0px 0px 20px;
+    }
+    // .mobileNav {
+    //   margin: 20px 10px 0px 0px;
+    // }
+    .navigation {
+      left: 10px;
+      top: 100px;
+
+      li {
+        margin: 0 10px;
+      }
+    }
+  }
+}

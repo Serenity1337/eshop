@@ -108,7 +108,7 @@ export const Home = () => {
             </div>
           </div>
         </div>
-        <button> read more </button>
+        <button className={classes.blogReadBtn}> read more </button>
         <div className={classes.subscribeContainer}>
           <h1> SIGN UP FOR EXCLUSIVE UPDATES AND OFFERS FROM THE CX TEAM </h1>
           <div className={classes.flex}>

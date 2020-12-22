@@ -1,22 +1,16 @@
 import React, { useEffect, useState, useContext } from 'react'
 import classes from './Navbar.module.scss'
-import { Link, useLocation, useHistory } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { UserContext } from '../../UserContext'
-
 export const Navbar = () => {
   const { user, setuser } = useContext(UserContext)
   const [cartQuantity, setcartQuantity] = useState(0)
   const [modal, setmodal] = useState(false)
   const [removeClassOnLoad, setremoveClassOnLoad] = useState(false)
-  const [filteredItems, setfilteredItems] = useState([])
   const [loggedIn, setloggedIn] = useState(false)
-  const [userChanged, setuserChanged] = useState(0)
   const [totalCost, settotalCost] = useState(0)
   const parent = React.createRef()
   const location = useLocation()
-  // const containerClasses () => {
-  //   if (modal ===)
-  // }
 
   useEffect(() => {
     if (Object.keys(user).length > 0) {
@@ -28,16 +22,15 @@ export const Navbar = () => {
 
         let priceToNum = Number(item.price.split(' ')[0].replace(',', '.'))
         total = total + priceToNum * item.quantity
+        return 0
       })
 
       setcartQuantity(allItems)
       settotalCost(total)
       setloggedIn(true)
     } else {
-      console.log('asd')
       setloggedIn(false)
     }
-    console.log(user)
   }, [user])
   window.addEventListener('click', (event) => {
     event.stopPropagation()
@@ -73,7 +66,6 @@ export const Navbar = () => {
         .then((response) => {
           if (response) {
             setuser(userCopy)
-            setuserChanged(index)
           } else {
             alert('asd')
           }
@@ -104,7 +96,6 @@ export const Navbar = () => {
       .then((response) => {
         if (response) {
           setuser(userCopy)
-          setuserChanged(index)
         } else {
           alert('asd')
         }
@@ -118,6 +109,10 @@ export const Navbar = () => {
       <div className={classes.logo}>
         CX <div>CapacityX</div>
       </div>
+      {/* <div className={classes.mobileNav}>
+        <FontAwesomeIcon icon={faBars} />
+      </div> */}
+
       <ul className={classes.navigation}>
         <Link
           to='/'
