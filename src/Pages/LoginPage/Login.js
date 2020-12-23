@@ -1,49 +1,41 @@
-import React from 'react'
-import { useEffect } from 'react'
-import { useState } from 'react'
-import { Redirect } from 'react-router'
+import React, { useEffect, useState } from 'react'
+// import { Redirect } from 'react-router'
 import classes from './Login.module.scss'
+import { getAllUsers } from '../../Api'
 export const Login = () => {
   const [profile, setprofile] = useState({})
   const [profileErrorState, setprofileErrorState] = useState('')
   const [users, setusers] = useState([])
-  const [success, setsuccess] = useState(false)
+  // const [success, setsuccess] = useState(false)
   useEffect(() => {
-    fetch('http://localhost:4000/users', {
-      method: 'GET',
-      headers: { 'Content-Type': 'application/json' },
-    })
-      .then((header) => {
-        if (!header.ok) {
-          throw Error(header)
-        }
-        return header.json()
-      })
-      .then((response) => {
+    getAllUsers().then((response) => {
+      if (response) {
         setusers(response)
-      })
-      .catch((e) => {
-        console.log(e)
-      })
+      }
+    })
   }, [])
 
   const accountHandler = (event) => {
     setprofile({ ...profile, [event.target.name]: event.target.value })
   }
-  const registerFormHandler = () => {
+  const loginFormHandler = () => {
     console.log(users)
     let userProfile = {}
     let userExists = false
     users.map((user) => {
-      if (user.email === profile.email) userProfile = user
-      userExists = true
+      if (user.email === profile.email) {
+        userProfile = user
+        userExists = true
+        return 0
+      }
     })
     if (userExists === true) {
       if (profile.password === userProfile.password) {
         let userProfileCopy = { ...userProfile }
         delete userProfileCopy.password
         localStorage.setItem('user', JSON.stringify({ id: userProfileCopy.id }))
-        setsuccess(true)
+        // setsuccess(true)
+        window.location.href = '/'
       } else {
         let error = 'Please make sure your email or password is correct'
 
@@ -76,9 +68,9 @@ export const Login = () => {
         {profileErrorState ? (
           <p className={classes.error}>{profileErrorState}</p>
         ) : null}
-        <button onClick={registerFormHandler}> Log in Now </button>
+        <button onClick={loginFormHandler}> Log in Now </button>
       </div>
-      {success ? <Redirect to='/' /> : null}
+      {/* {success ? <Redirect to='/' /> : null} */}
     </div>
   )
 }

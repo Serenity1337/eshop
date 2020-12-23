@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from 'react'
 import classes from './Navbar.module.scss'
 import { Link, useLocation } from 'react-router-dom'
 import { UserContext } from '../../UserContext'
+import { editSingleUser } from '../../Api'
 export const Navbar = () => {
   const { user, setuser } = useContext(UserContext)
   const [cartQuantity, setcartQuantity] = useState(0)
@@ -11,6 +12,13 @@ export const Navbar = () => {
   const [totalCost, settotalCost] = useState(0)
   const parent = React.createRef()
   const location = useLocation()
+
+  const nav = [
+    { name: 'Home', path: '/' },
+    { name: 'About', path: '/about' },
+    { name: 'Shop', path: '/shop' },
+    { name: 'Contact', path: '/contact' },
+  ]
 
   useEffect(() => {
     if (Object.keys(user).length > 0) {
@@ -32,47 +40,40 @@ export const Navbar = () => {
       setloggedIn(false)
     }
   }, [user])
+
   window.addEventListener('click', (event) => {
     event.stopPropagation()
     if (event.target === parent.current) {
       setmodal(false)
     }
   })
+
   const modalOpen = () => {
     setmodal(true)
     setremoveClassOnLoad(true)
     console.log('asd')
   }
+
   const modalClose = (event) => {
     setmodal(false)
   }
+
+  const logoutFunction = () => {
+    localStorage.clear()
+    setloggedIn(false)
+  }
+
   const removeItemQuantity = (item, index) => {
     const userCopy = { ...user }
 
     if (item.quantity > 1) {
       item.quantity = item.quantity - 1
       userCopy.cart[index] = item
-      fetch('http://localhost:4000/users/' + user.id, {
-        method: 'PUT',
-        body: JSON.stringify(userCopy),
-        headers: { 'Content-Type': 'application/json' },
+      editSingleUser(userCopy.id, userCopy).then((response) => {
+        if (response) {
+          setuser(userCopy)
+        }
       })
-        .then((header) => {
-          if (!header.ok) {
-            throw Error(header)
-          }
-          return header.json()
-        })
-        .then((response) => {
-          if (response) {
-            setuser(userCopy)
-          } else {
-            alert('asd')
-          }
-        })
-        .catch((e) => {
-          console.log(e)
-        })
     } else {
       console.log('cant')
     }
@@ -82,86 +83,41 @@ export const Navbar = () => {
 
     item.quantity = item.quantity + 1
     userCopy.cart[index] = item
-    fetch('http://localhost:4000/users/' + user.id, {
-      method: 'PUT',
-      body: JSON.stringify(userCopy),
-      headers: { 'Content-Type': 'application/json' },
+    editSingleUser(userCopy.id, userCopy).then((response) => {
+      if (response) {
+        setuser(userCopy)
+      }
     })
-      .then((header) => {
-        if (!header.ok) {
-          throw Error(header)
-        }
-        return header.json()
-      })
-      .then((response) => {
-        if (response) {
-          setuser(userCopy)
-        } else {
-          alert('asd')
-        }
-      })
-      .catch((e) => {
-        console.log(e)
-      })
   }
   return (
     <div className={classes.navbar}>
       <div className={classes.logo}>
         CX <div>CapacityX</div>
       </div>
-      {/* <div className={classes.mobileNav}>
-        <FontAwesomeIcon icon={faBars} />
-      </div> */}
-
       <ul className={classes.navigation}>
-        <Link
-          to='/'
-          className={location.pathname === '/' ? classes.active : null}
-        >
-          <li> Home </li>
-        </Link>
-
-        <Link
-          to='/about'
-          className={location.pathname === '/about' ? classes.active : null}
-        >
-          <li> About </li>
-        </Link>
-
-        <Link
-          to='/shop'
-          className={location.pathname === '/shop' ? classes.active : null}
-        >
-          <li> Shop </li>
-        </Link>
-
-        <Link
-          to='/contact'
-          className={location.pathname === '/contact' ? classes.active : null}
-        >
-          <li> Contact </li>
-        </Link>
+        {nav.map((nav, index) => (
+          <Link
+            key={index}
+            to={nav.path}
+            className={location.pathname === nav.path ? classes.active : null}
+          >
+            {nav.name}
+          </Link>
+        ))}
 
         {loggedIn ? (
           <>
             <li onClick={modalOpen}>{cartQuantity}</li>
-            <li> Logout </li>
+            <li onClick={logoutFunction}> Logout </li>
           </>
         ) : (
           <>
-            <Link to='/login'>
-              {' '}
-              <li>Login </li>
-            </Link>
-            <Link to='/register'>
-              {' '}
-              <li> Register </li>{' '}
-            </Link>
+            <Link to='/login'>Login</Link>
+            <Link to='/register'>Register</Link>
           </>
         )}
       </ul>
 
-      {/* {modal ? ( */}
       <div
         className={
           modal

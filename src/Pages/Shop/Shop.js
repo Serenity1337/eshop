@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react'
 import classes from './Shop.module.scss'
 import { UserContext } from '../../UserContext'
+import { getAllProducts, editSingleUser } from '../../Api'
 export const Shop = () => {
   const { user, setuser } = useContext(UserContext)
   const [products, setproducts] = useState([])
@@ -15,25 +16,14 @@ export const Shop = () => {
   })
 
   useEffect(() => {
-    fetch('http://localhost:4000/products', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((header) => {
-        if (!header.ok) {
-          throw Error(header)
-        }
-        return header.json()
-      })
-      .then((response) => {
+    getAllProducts().then((response) => {
+      if (response) {
         setproducts(response)
         setfilteredProducts(response)
-      })
-      .catch((e) => {
-        console.log(e)
-      })
+      } else {
+        console.log('whoops shoulda handled this error')
+      }
+    })
   }, [])
   useEffect(() => {
     const productTypeArr = ['All', 'PreWorkout', 'Capsules', 'ProteinPowder']
@@ -59,7 +49,6 @@ export const Shop = () => {
 
   const productTypeHandler = () => {
     setproductTypeFilter(!productTypeFilter)
-    console.log(productTypeFilter)
   }
 
   const productTypeFilterHandler = (event) => {
@@ -67,8 +56,6 @@ export const Shop = () => {
     const productTypeArr = ['All', 'PreWorkout', 'Capsules', 'ProteinPowder']
     const productTypeObjCopy = { ...productTypeDisplayFilter }
     productTypeArr.map((type, index) => {
-      // console.log(String(event.currentTarget.textContent) === String(type))
-      // console.log(String(event.currentTarget.textContent).split('').join(''))
       const typeCopy = String(event.currentTarget.textContent).replace(/ /g, '')
       if (typeCopy === String(type)) {
         productTypeObjCopy[type] = true
@@ -90,27 +77,9 @@ export const Shop = () => {
     } else {
       userCopy.cart = [...userCopy.cart, product]
     }
-    fetch('http://localhost:4000/users/' + user.id, {
-      method: 'PUT',
-      body: JSON.stringify(userCopy),
-      headers: { 'Content-Type': 'application/json' },
+    editSingleUser(user.id, userCopy).then((response) => {
+      setuser(userCopy)
     })
-      .then((header) => {
-        if (!header.ok) {
-          throw Error(header)
-        }
-        return header.json()
-      })
-      .then((response) => {
-        setuser(userCopy)
-        if (response) {
-        } else {
-          alert('asd')
-        }
-      })
-      .catch((e) => {
-        console.log(e)
-      })
   }
   return (
     <div className={classes.productsContainer}>

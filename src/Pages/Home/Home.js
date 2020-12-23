@@ -1,17 +1,12 @@
-import React, { useEffect, useState, useContext } from 'react'
+import React from 'react'
 import classes from './Home.module.scss'
 import landingImg from '../../imgs/home/img2.png'
 import card1 from '../../imgs/home/913019_6d1d377f525b4b568168926a657dd13b_mv2_d_3227_3116_s_4_2.webp'
 import card2 from '../../imgs/home/913019_e041a68b0e62406184655aea26d07e1b_mv2_d_3227_3116_s_4_2.webp'
 import card3 from '../../imgs/home/913019_6771fc17856545648d6025c0f41569bb_mv2_d_3227_3116_s_4_2.webp'
 import motiImg from '../../imgs/home/motiImg.webp'
-import { UserContext } from '../../UserContext'
-export const Home = () => {
-  const { user, setuser } = useContext(UserContext)
 
-  useEffect(() => {
-    console.log(user)
-  }, [user])
+export const Home = () => {
   return (
     <div className={classes.homeContainer}>
       <div className={classes.landingSection}>
