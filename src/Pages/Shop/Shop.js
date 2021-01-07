@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react'
 import classes from './Shop.module.scss'
 import { UserContext } from '../../UserContext'
 import { getAllProducts, editSingleUser } from '../../Api'
+import { Link } from 'react-router-dom'
 export const Shop = () => {
   const { user, setuser } = useContext(UserContext)
   const [products, setproducts] = useState([])
@@ -167,10 +168,15 @@ export const Shop = () => {
               <div className={classes.productTitle}>{product.title}</div>
               <div className={classes.productPrice}>{product.price}</div>
 
-              <button onClick={() => cartHandler(product, index)}>
-                Add to Cart
-                <span>{product.quantity}</span>
-              </button>
+              {Object.keys(user).length > 0 ? (
+                <button onClick={() => cartHandler(product, index)}>
+                  Add to Cart
+                </button>
+              ) : (
+                <button>
+                  <Link to={`/login`}>Add to Cart</Link>
+                </button>
+              )}
             </div>
           ))}
         </div>

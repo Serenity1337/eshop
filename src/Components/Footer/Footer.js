@@ -16,9 +16,9 @@ export const Footer = () => {
         <div className={classes.policiesWrapper}>
           <h1>Policies</h1>
           <div className={classes.policiesContainer}>
-            <Link>FAQ</Link>
-            <Link>Store Policy</Link>
-            <Link>Shipping and Returns</Link>
+            <Link to='/shop'>FAQ</Link>
+            <Link to='/shop'>Store Policy</Link>
+            <Link to='/shop'>Shipping and Returns</Link>
           </div>
         </div>
         <div className={classes.socialMediaWrapper}>
@@ -57,9 +57,7 @@ export const Footer = () => {
           </div>
         </div>
       </div>
-      <div className={classes.copyright}>
-        © 2023 BY CAPACITYX. PROUDLY CREATED WITH WIX.COM
-      </div>
+      <div className={classes.copyright}>© 2023 BY CAPACITYX.</div>
     </div>
   )
 }
